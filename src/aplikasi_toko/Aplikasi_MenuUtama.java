@@ -5,18 +5,31 @@
  */
 package aplikasi_toko;
 
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 /**
  *
  * @author cosnors
  */
 public class Aplikasi_MenuUtama extends javax.swing.JFrame {
+    koneksi kon = new koneksi();
+    public String KodeUser;
+    public String Level;
+    public String NamaUser;
 
     /**
      * Creates new form Aplikasi_MenuUtama
      */
     public Aplikasi_MenuUtama() {
         initComponents();
+        kon.setKoneksi();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +40,257 @@ public class Aplikasi_MenuUtama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lkode = new javax.swing.JLabel();
+        llevel = new javax.swing.JLabel();
+        lnama = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnLogout = new javax.swing.JMenuItem();
+        mnKeluar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mnBarang = new javax.swing.JMenuItem();
+        mnUser = new javax.swing.JMenuItem();
+        mnTransaksi = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        mnLapBarang = new javax.swing.JMenuItem();
+        mnLapUser = new javax.swing.JMenuItem();
+        mnLapTransaksi = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnGantiPassword = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        jLabel1.setText("Selamat Datang di Aplikasi Penjualan");
+
+        jLabel2.setText("Kode User Anda       :");
+
+        jLabel3.setText("Akses Level Anda    :");
+
+        lkode.setText("-");
+
+        llevel.setText("-");
+
+        lnama.setText("-");
+
+        jMenu1.setText("File");
+
+        mnLogout.setText("Logout");
+        mnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnLogout);
+
+        mnKeluar.setText("Keluar");
+        mnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnKeluarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnKeluar);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Master");
+
+        mnBarang.setText("Barang");
+        mnBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnBarangActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnBarang);
+
+        mnUser.setText("User");
+        mnUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnUserActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnUser);
+
+        jMenuBar1.add(jMenu2);
+
+        mnTransaksi.setText("Transaksi");
+        mnTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnTransaksiActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(mnTransaksi);
+
+        jMenu3.setText("Laporan");
+
+        mnLapBarang.setText("Data Barang");
+        mnLapBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnLapBarangActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnLapBarang);
+
+        mnLapUser.setText("Data User");
+        mnLapUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnLapUserActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnLapUser);
+
+        mnLapTransaksi.setText("Data Transaksi");
+        mnLapTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnLapTransaksiActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnLapTransaksi);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Utility");
+
+        mnGantiPassword.setText("Ganti Password");
+        mnGantiPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnGantiPasswordActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnGantiPassword);
+
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addComponent(lnama))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lkode)
+                            .addComponent(llevel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lnama))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lkode))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(llevel))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBarangActionPerformed
+        // TODO add your handling code here:
+        Aplikasi_Master_Barang barang = new Aplikasi_Master_Barang();
+        barang.setLocationRelativeTo(null);
+        barang.setVisible(true);
+    }//GEN-LAST:event_mnBarangActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        lnama.setText(NamaUser);
+        lkode.setText(KodeUser);
+        llevel.setText(Level);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLogoutActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Aplikasi_Login login = new Aplikasi_Login();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+    }//GEN-LAST:event_mnLogoutActionPerformed
+
+    private void mnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnKeluarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_mnKeluarActionPerformed
+
+    private void mnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnUserActionPerformed
+        // TODO add your handling code here:
+        Aplikasi_Master_User user = new Aplikasi_Master_User();
+        user.setLocationRelativeTo(null);
+        user.setVisible(true);
+    }//GEN-LAST:event_mnUserActionPerformed
+
+    private void mnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnTransaksiActionPerformed
+        // TODO add your handling code here:
+        Aplikasi_Transaksi transaksi = new Aplikasi_Transaksi();
+        transaksi.setLocationRelativeTo(null);
+        transaksi.setVisible(true);
+    }//GEN-LAST:event_mnTransaksiActionPerformed
+
+    private void mnLapBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLapBarangActionPerformed
+        // TODO add your handling code here:
+        try {
+            String path="src/aplikasi_toko/Laporan_Barang.jasper";
+            HashMap parameter = new HashMap();
+            JasperPrint print = JasperFillManager.fillReport(path, parameter, kon.setKoneksi());
+            JasperViewer.viewReport(print,false);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_mnLapBarangActionPerformed
+
+    private void mnLapUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLapUserActionPerformed
+        // TODO add your handling code here:
+        try {
+            String path="src/aplikasi_toko/Laporan_User.jasper";
+            HashMap parameter = new HashMap();
+            JasperPrint print = JasperFillManager.fillReport(path, parameter, kon.setKoneksi());
+            JasperViewer.viewReport(print,false);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_mnLapUserActionPerformed
+
+    private void mnLapTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLapTransaksiActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_mnLapTransaksiActionPerformed
+
+    private void mnGantiPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnGantiPasswordActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mnGantiPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -54,7 +303,7 @@ public class Aplikasi_MenuUtama extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -79,5 +328,46 @@ public class Aplikasi_MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lkode;
+    private javax.swing.JLabel llevel;
+    private javax.swing.JLabel lnama;
+    private javax.swing.JMenuItem mnBarang;
+    private javax.swing.JMenuItem mnGantiPassword;
+    private javax.swing.JMenuItem mnKeluar;
+    private javax.swing.JMenuItem mnLapBarang;
+    private javax.swing.JMenuItem mnLapTransaksi;
+    private javax.swing.JMenuItem mnLapUser;
+    private javax.swing.JMenuItem mnLogout;
+    private javax.swing.JMenu mnTransaksi;
+    private javax.swing.JMenuItem mnUser;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the KodeUser
+     */
+    public String getKodeUser() {
+        return KodeUser;
+    }
+
+    /**
+     * @return the Level
+     */
+    public String getLevel() {
+        return Level;
+    }
+
+    /**
+     * @return the NamaUser
+     */
+    public String getNamaUser() {
+        return NamaUser;
+    }
 }
